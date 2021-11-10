@@ -1,0 +1,161 @@
+﻿<Window x:Class="_5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_5"
+        mc:Ignorable="d"
+        Title="6" Height="393" Width="629">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="10" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="15" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="Simple Purple Gradient.jpg" />
+    </Window.Background>
+    <Grid Margin="0,0,-8,0">
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Background="#FFC76598" >
+            <MenuItem Header="О программе" FontWeight="Bold" Background="#FFD1669C" >
+                <MenuItem Header="Информация" Click="Info_Click" FontWeight="Bold" Background="#FFD1669C"   />
+                <MenuItem Header="Выход" Click="Выход_Click" FontWeight="Bold" Background="#FFD1669C"  />
+            </MenuItem> 
+            <Separator Width="405"></Separator>
+            <MenuItem Header="Действия" FontWeight="Bold" Width="108" Background="#FF7C5D86">
+                <MenuItem Header="Купить 1 авто" Click="Купить_Click" Background="#FF8F5E8B"/>
+                <MenuItem Header="Купить 2 авто" Click="Купить1_Click" Background="#FF8F5E8B"/>
+                <MenuItem Header="Сравнить" Click="Сравнить_Click" Background="#FF8F5E8B"/>
+                <MenuItem Header="Очистить" Click="Очистить_Click" Background="#FF8F5E8B"/>
+            </MenuItem>
+        </Menu>
+        <Label Content="Марка машины" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Width="179" Background="#00000000" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Цилиндр" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" Width="179" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Мощность(кВт)" HorizontalAlignment="Left" Margin="9,237,0,0" VerticalAlignment="Top" Width="195" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="16">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.089"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <TextBox x:Name="Cilindr" HorizontalAlignment="Left" Height="23" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+        <TextBox x:Name="Moshnost" HorizontalAlignment="Left" Height="23" Margin="10,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+
+        <RadioButton x:Name="BMW" GroupName="1" Content="BMW X6" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Height="20" Width="124" Checked="BMW_Checked" FontWeight="Bold" FontSize="14"/>
+        <RadioButton x:Name="Audi" GroupName="1" Content="Audi A5" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Height="20" Width="124" Checked="Audi_Checked" FontWeight="Bold" FontSize="14"/>
+        <Button Content="Plus" HorizontalAlignment="Left" Margin="92,281,0,0" VerticalAlignment="Top" Width="73" Click="Plus_Click" Height="23" Background="#FFB46293" FontWeight="Bold" FontSize="14"/>
+        <GroupBox Header="Покупка авто" HorizontalAlignment="Left" Height="308" Margin="194,42,0,0" VerticalAlignment="Top" Width="269">
+            <Grid Margin="2,0,-2,1" >
+                <Button Content="Купить 1 авто" HorizontalAlignment="Left" Margin="110,100,0,0" VerticalAlignment="Top" Width="137" Click="Купить_Click" Height="34" FontWeight="Bold" FontSize="14" Background="#FFA96191"/>
+                <TextBox x:Name="car1"  IsReadOnly="True"  HorizontalAlignment="Left" Height="85" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"/>
+                <TextBox x:Name="car2"  IsReadOnly="True"  HorizontalAlignment="Left" Height="85" Margin="110,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"/>
+                <Button Content="Купить 2 авто" HorizontalAlignment="Left" Margin="110,240,0,0" VerticalAlignment="Top" Width="137" Click="Купить1_Click" Height="34" FontSize="14" Background="#FFA96191" FontWeight="Bold"/>
+                <Label Content="1 авто (BMW)" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="26" Width="95" FontWeight="Bold"/>
+                <Label Content="2 авто (Audi)" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Height="26" Width="84" FontWeight="Bold"/>
+            </Grid>
+        </GroupBox>
+        <TextBox x:Name="srav" IsReadOnly="True"  HorizontalAlignment="Left" Height="23" Margin="479,118,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Сравнить" HorizontalAlignment="Left" Margin="479,152,0,0" VerticalAlignment="Top" Width="120" Height="46" FontWeight="Bold" Background="#FF7D5D86" Click="Сравнить_Click"/>
+        <Label Content="Сравнивание" HorizontalAlignment="Left" Margin="489,78,0,0" VerticalAlignment="Top" Width="95" FontWeight="Bold"/>
+        <Button Content="Очистить" HorizontalAlignment="Left" Margin="479,214,0,0" VerticalAlignment="Top" Width="120" Height="46" FontWeight="Bold" Background="#FF7D5D86" Click="Очистить_Click"/>
+
+    </Grid>
+</Window>
